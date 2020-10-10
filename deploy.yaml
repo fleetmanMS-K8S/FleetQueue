@@ -39,6 +39,7 @@ spec:
   ports:
     - name: http
       port: 15672
+      nodePort: 30084
  
 
     - name: endpoint
@@ -56,5 +57,5 @@ spec:
       port: 4369
 
 
-  type: ClusterIP
+  type: NodePort
 
