@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minirabbit
+spec:
+  selector:
+    matchLabels:
+      app: minirabbit
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: minirabbit
+
+    spec:
+      containers:
+      - name: minirabbit
+        image: rabbitmq:3-management
+        resources:
+          requests:
+            memory: 300Mi
+            cpu: 100m
+
+
+
+---
+
+
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: minirabbit
+
+spec:
+  selector:
+    app: minirabbit
+
+  ports:
+    - name: http
+      port: 15672
+ 
+
+    - name: endpoint
+      port: 5672
+
+
+    - name: endpoint1
+      port: 15671
+
+    - name: endpoint2
+      port: 5671
+
+
+    - name: endpoint3
+      port: 4369
+
+
+  type: ClusterIP
+
